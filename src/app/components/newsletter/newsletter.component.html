@@ -1,0 +1,22 @@
+<div class="newsletter-wrapper">
+  <div class="newsletter-container">
+    <div *ngFor="let article of news" class="card">
+      <div *ngIf="!article" class="newsletter-lds-dual-ring"></div>
+      <div *ngIf="article" class="card-inner-div">
+        <div class="img-wrapper">
+          <img class="img-fluid" src="{{ article.img }}" alt="Card image cap" />
+        </div>
+        <div class="card-body p-3 mt-2">
+          <h2 class="card-title pt-4">{{ article.title }}</h2>
+          <p class="card-text mb-3">{{ article.text | shorten }}...</p>
+        </div>
+        <button
+          (click)="openNewsDialog(article)"
+          class="btn m-3 newsletter-btn-open-dialog"
+        >
+          Read more
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

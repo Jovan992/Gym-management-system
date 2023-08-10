@@ -1,0 +1,20 @@
+<div class="px-2 py-3">
+  <h1 mat-dialog-title>Are you sure you want to delete {{ nameForDeletion }}?</h1>
+  <div mat-dialog-actions class="px-3 d-flex justify-content-end">
+    <button
+      mat-raised-button
+      type="button"
+      class="dialog-button dialog-button-cancel"
+      [mat-dialog-close]="false"
+    >
+      Cancel
+    </button>
+    <button
+      mat-raised-button    
+      class="dialog-button dialog-button-save"
+      (click)="onDeleteData()"
+    >
+      Yes
+    </button>
+  </div>
+</div>

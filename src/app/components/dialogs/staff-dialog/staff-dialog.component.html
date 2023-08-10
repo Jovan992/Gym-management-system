@@ -1,0 +1,78 @@
+<h1 mat-dialog-title>{{ data? 'Edit Staff': 'Add Staff'}}</h1>
+<form [formGroup]="staffDialogForm" (ngSubmit)="onFormSubmit()">
+    <div mat-dialog-content>
+        <div class="row d-flex gap-2">
+            <mat-form-field class="g-dialog-narrow-field" appearance="outline">
+                <mat-label>Name</mat-label><br>
+                <input matInput formControlName="name">
+                <mat-error
+                    *ngIf="staffDialogForm.controls['name'].errors?.['required'] && staffDialogForm.controls['name'].touched">Name
+                    field is
+                    required</mat-error>
+            </mat-form-field>
+            <mat-form-field class="g-dialog-narrow-field" appearance="outline">
+                <mat-label>Surname</mat-label><br>
+                <input matInput formControlName="surname">
+                <mat-error
+                    *ngIf="staffDialogForm.controls['surname'].errors?.['required'] && staffDialogForm.controls['surname'].touched">Surname
+                    field is
+                    required</mat-error>
+            </mat-form-field>
+            <mat-form-field class="g-dialog-narrow-field" appearance="outline">
+                <mat-label>Phone number</mat-label><br>
+                <input matInput type="number" formControlName="phone">
+                <mat-error
+                    *ngIf="staffDialogForm.controls['phone'].errors?.['required'] && staffDialogForm.controls['phone'].touched">Phone
+                    field is
+                    required</mat-error>
+            </mat-form-field>
+            <mat-form-field class="g-dialog-narrow-field" appearance="outline">
+                <mat-label>Role</mat-label><br>
+                <input matInput formControlName="role">
+                <mat-error
+                    *ngIf="staffDialogForm.controls['role'].errors?.['required'] && staffDialogForm.controls['role'].touched">Role
+                    field is
+                    required</mat-error>
+            </mat-form-field>
+            <mat-form-field class="g-dialog-narrow-field" appearance="outline">
+                <mat-label>Email</mat-label><br>
+                <input matInput type="email" formControlName="email">
+                <mat-error
+                    *ngIf="staffDialogForm.controls['email'].errors?.['required'] && staffDialogForm.controls['email'].touched">Email
+                    field
+                    is required</mat-error>
+                <mat-error
+                    *ngIf="staffDialogForm.controls['email'].errors?.['email'] && staffDialogForm.controls['email'].touched">Please
+                    type
+                    in
+                    correct email address.</mat-error>
+            </mat-form-field>
+            <mat-form-field class="g-dialog-narrow-field" appearance="outline" class="d-none">
+                <mat-label>Photo</mat-label><br>
+                <input matInput formControlName="photo">
+            </mat-form-field>
+        </div>
+    </div>
+
+    <mat-dialog-actions>
+        <button mat-raised-button type="button" class="dialog-button dialog-button-cancel"
+            [mat-dialog-close]="false">Cancel</button>
+        <button mat-raised-button class="dialog-button dialog-button-save" type="submit">{{data? 'Update':
+            'Save'}}</button>
+    </mat-dialog-actions>
+</form>
+<div class="g-dialog-upload-div position-absolute end-0 top-0 d-flex justify-content-end">
+    <div class="row">
+
+        <div class="col-8 me-1 d-flex align-items-center text-end">Choose photo:</div>
+        <div class="col-3 d-flex justify-content-end position-relative">
+            <div class="g-dialog-add-photo-div">
+                <input type="file" (change)="onChange($event)" #avatar>
+            </div>
+
+            <div *ngIf="myImage" (click)="avatar.click()">
+                <img class="avatarImg" [src]="myImage" alt="">
+            </div>
+        </div>
+    </div>
+</div>

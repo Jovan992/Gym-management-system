@@ -1,0 +1,149 @@
+<div mat-dialog-title class="member-dialog-title">
+  <h1 class="m-0">Members Form - {{ data ? "Update" : "Add New" }}</h1>
+</div>
+<div class="member-dialog-upload-img">
+  <img
+    [src]="imgData ? imgData : 'assets/icons/base_avatar.png'"
+    class="rounded-circle me-3 member-dialog-img-preview"
+  />
+  <button (click)="uploader.click()" class="member-dialog-choose-photo-btn p-1">
+    <input type="file" hidden (change)="onFileSelected($event)" #uploader />
+    Choose Photo
+  </button>
+</div>
+<form [formGroup]="membersForm" (ngSubmit)="onSubmit()">
+  <mat-form-field appearance="outline" class="d-none">
+    <mat-label>Photo</mat-label><br />
+    <input matInput formControlName="photo" />
+  </mat-form-field>
+  <mat-error
+    class="ms-4 member-photo-error"
+    *ngIf="
+    membersForm.controls['photo'].errors?.['required'] && membersForm.controls['photo'].touched
+    "
+    >Please select photo!</mat-error
+  >
+  <div mat-dialog-content>
+    <div class="row d-flex">
+      <mat-form-field class="pb-2" appearance="outline">
+        <mat-label>Name</mat-label>
+        <input matInput required type="text" formControlName="name" />
+        <mat-error
+          *ngIf="          
+            membersForm.controls['name'].errors?.['required']
+          "
+        >
+          This field is required
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="pb-2" appearance="outline">
+        <mat-label>Surname</mat-label>
+        <input matInput required type="text" formControlName="surname" />
+        <mat-error
+          *ngIf="          
+            membersForm.controls['surname'].errors?.['required']
+          "
+        >
+          This field is required
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="pb-2" appearance="outline">
+        <mat-label>Phone Number</mat-label>
+        <input matInput required type="phone" formControlName="phoneNumber" />
+        <mat-error
+          *ngIf="          
+            membersForm.controls['phoneNumber'].errors?.['required']
+          "
+        >
+          This field is required
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="pb-2" appearance="outline">
+        <mat-label>Email</mat-label>
+        <input matInput required type="email" formControlName="email" />
+        <mat-error
+          *ngIf="membersForm.controls['email'].errors?.['required'] && membersForm.controls['email'].touched"
+          >This field is required</mat-error
+        >
+        <mat-error
+          *ngIf="membersForm.controls['email'].errors?.['email'] && membersForm.controls['email'].touched"
+          >Please type in correct email address.</mat-error
+        >
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="pb-2">
+        <mat-label>Choose a date</mat-label>
+        <input
+          formControlName="joiningDate"
+          matInput
+          [min]="minDate"
+          [max]="maxDate"
+          [matDatepicker]="picker"
+        />
+        <mat-hint>{{ settingsService.dateFormat }}</mat-hint>
+        <mat-datepicker-toggle
+          matIconSuffix
+          [for]="picker"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-error
+          *ngIf="membersForm.controls['joiningDate'].errors?.['matDatepickerMin']"
+          >You must chose date after 1999!</mat-error
+        >
+        <mat-error
+          *ngIf="membersForm.controls['joiningDate'].errors?.['matDatepickerMax']"
+          >You can't choose future date!</mat-error
+        >
+        <mat-error
+          *ngIf="
+            !membersForm.controls['joiningDate'].valid &&
+            membersForm.controls['joiningDate'].dirty
+          "
+          >The date is invalid</mat-error
+        >
+        <mat-error *ngIf="!membersForm.controls['joiningDate'].dirty">
+          This field is required
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="pb-2 mt-3">
+        <mat-label>Membership Type</mat-label>
+        <mat-select panelClass="myPanelClass" formControlName="membershipType">
+          <mat-option
+            *ngFor="let membership of membershipTypes"
+            [value]="membership"
+          >
+            {{ membership }}
+          </mat-option>
+        </mat-select>
+        <mat-error
+          *ngIf="
+          membersForm.controls['membershipType'].errors?.['required']
+          "
+        >
+          This field is required
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div
+    mat-dialog-actions
+    class="justify-content-end g-component-dialog-actions-btn-container"
+  >
+    <button
+      mat-raised-button
+      class="dialog-button dialog-button-cancel"
+      type="button"
+      [mat-dialog-close]="false"
+    >
+      Close
+    </button>
+    <button
+      mat-raised-button
+      class="dialog-button dialog-button-save"
+      type="submit"
+    >
+      {{ data ? "Update" : "Save" }}
+    </button>
+  </div>
+</form>

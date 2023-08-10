@@ -1,0 +1,307 @@
+<div
+  class="sidenav-div"
+  [ngClass]="{ 'sidenav-div-shrink': closed, 'sidenav-div-opened': !closed }"
+>
+  <div
+    class="px-0 d-flex justify-content-start text-center text-light brand-container"
+    [ngClass]="{
+      'brand-container-shrink': closed,
+      'brand-container-opened': !closed
+    }"
+  >
+    <div id="hamburger-icon" (click)="toggle()" #hamburger>
+      <i class="fa fa-bars" aria-hidden="true"></i>
+    </div>
+    <div
+      *ngIf="!closed"
+      id="brand-name-div"
+      [ngClass]="{ 'brand-shrink': closed, 'brand-opened': !closed }"
+    >
+      <span class="me-2">{{ settingsService.gymName }}</span>
+    </div>
+  </div>
+  <mat-drawer-container
+    class="drawer-container"
+    (mouseenter)="mouseDrawerEnter()"
+    (mouseleave)="mouseDrawerLeave()"
+    [ngClass]="{
+      'drawer-container-shrink': closed,
+      'drawer-container-opened': !closed
+    }"
+  >
+    <mat-drawer
+      class="sidenav-drawer px-0"
+      [ngClass]="{
+        'sidenav-drawer-shrink': closed,
+        'sidenav-drawer-opened': !closed
+      }"
+      mode="side"
+      opened
+    >
+      <mat-list role="list">
+        <mat-accordion>
+          <mat-list-item
+            routerLink="/dashboard"
+            [routerLinkActive]="['is-active']"
+            [routerLinkActiveOptions]="{ exact: true }"
+            class="sideList"
+            role="listitem"
+          >
+            <i class="fa fa-pie-chart" aria-hidden="true"></i>
+            <span *ngIf="!closed" class="list-item-text">Dashboard</span>
+          </mat-list-item>
+          <mat-list-item
+            routerLink="/membership"
+            [routerLinkActive]="['is-active']"
+            [routerLinkActiveOptions]="{ exact: true }"
+            class="sideList"
+            role="listitem"
+          >
+            <i class="fa fa-users" aria-hidden="true"></i>
+            <span *ngIf="!closed" class="list-item-text">Membership Type</span>
+          </mat-list-item>
+          <mat-list-item
+            routerLink="/group"
+            [routerLinkActive]="['is-active']"
+            [routerLinkActiveOptions]="{ exact: true }"
+            class="sideList"
+            role="listitem"
+          >
+            <i class="fa fa-object-group" aria-hidden="true"></i>
+            <span *ngIf="!closed" class="list-item-text">Group</span>
+          </mat-list-item>
+          <mat-expansion-panel
+            [hideToggle]="closed"
+            class="mat-exp-panel remove-mat-expansion-panel-padding"
+          >
+            <mat-expansion-panel-header class="mat-exp-header">
+              <mat-panel-title>
+                <i class="fa fa-calendar" aria-hidden="true"></i>
+                <span *ngIf="!closed" class="list-item-text"
+                  >Class & Nutrition Schedule</span
+                >
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div
+              *ngIf="!closed"
+              class="my-2"
+              routerLinkActive="active"
+              [routerLinkActiveOptions]="{ exact: true }"
+              routerLink="/class-schedule"
+            >
+              <i class="fa fa-circle-o py-2 sub-icon" aria-hidden="true"></i>
+              <span *ngIf="!closed" class="list-item-sub-text"
+                >Class Schedule</span
+              >
+            </div>
+            <div
+              routerLink="/nutrition-schedule"
+              routerLinkActive="active"
+              [routerLinkActiveOptions]="{ exact: true }"
+              *ngIf="!closed"
+              class="my-2"
+            >
+              <i class="fa fa-circle-o sub-icon" aria-hidden="true"></i>
+              <span *ngIf="!closed" class="list-item-sub-text"
+                >Nutrition Schedule</span
+              ><br />
+            </div>
+          </mat-expansion-panel>
+          <mat-expansion-panel
+            [hideToggle]="closed"
+            class="mat-exp-panel remove-mat-expansion-panel-padding"
+          >
+            <mat-expansion-panel-header class="mat-exp-header">
+              <mat-panel-title>
+                <i class="fa fa-user" aria-hidden="true"></i>
+                <span *ngIf="!closed" class="list-item-text"
+                  >Member Management</span
+                >
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div
+              *ngIf="!closed"
+              class="my-2"
+              routerLink="/members"
+              routerLinkActive="active"
+              [routerLinkActiveOptions]="{ exact: true }"
+            >
+              <i class="fa fa-circle-o py-2 sub-icon" aria-hidden="true"></i>
+              <span *ngIf="!closed" class="list-item-sub-text">Members</span>
+            </div>
+            <div
+              *ngIf="!closed"
+              class="my-2"
+              routerLinkActive="active"
+              [routerLinkActiveOptions]="{ exact: true }"
+              routerLink="/staff"
+            >
+              <i class="fa fa-circle-o sub-icon" aria-hidden="true"></i>
+              <span *ngIf="!closed" class="list-item-sub-text"
+                >Staff Member</span
+              ><br />
+            </div>
+            <div
+              *ngIf="!closed"
+              class="my-2"
+              routerLink="/accountant"
+              routerLinkActive="active"
+              [routerLinkActiveOptions]="{ exact: true }"
+            >
+              <i class="fa fa-circle-o sub-icon" aria-hidden="true"></i>
+              <span *ngIf="!closed" class="list-item-sub-text">Accountant</span
+              ><br />
+            </div>
+          </mat-expansion-panel>
+          <mat-list-item
+            [routerLinkActive]="['is-active']"
+            [routerLinkActiveOptions]="{ exact: true }"
+            class="sideList"
+            role="listitem"
+          >
+            <i class="fa fa-motorcycle" aria-hidden="true"></i>
+            <span *ngIf="!closed" class="list-item-text">Activity</span>
+          </mat-list-item>
+          <mat-expansion-panel
+            [hideToggle]="closed"
+            class="mat-exp-panel remove-mat-expansion-panel-padding"
+          >
+            <mat-expansion-panel-header class="mat-exp-header">
+              <mat-panel-title>
+                <i class="fa fa-hand-rock-o" aria-hidden="true"></i>
+                <span *ngIf="!closed" class="list-item-text">Workout</span>
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div *ngIf="!closed" class="my-2">
+              <i class="fa fa-circle-o py-2 sub-icon" aria-hidden="true"></i>
+              <span *ngIf="!closed" class="list-item-sub-text"
+                >Assign Workout</span
+              >
+            </div>
+            <div *ngIf="!closed" class="my-2">
+              <i class="fa fa-circle-o sub-icon" aria-hidden="true"></i>
+              <span *ngIf="!closed" class="list-item-sub-text"
+                >Daily Workout</span
+              ><br />
+            </div>
+          </mat-expansion-panel>
+          <mat-expansion-panel
+            [hideToggle]="closed"
+            class="mat-exp-panel remove-mat-expansion-panel-padding"
+          >
+            <mat-expansion-panel-header class="mat-exp-header">
+              <mat-panel-title>
+                <i class="fa fa-tags" aria-hidden="true"></i>
+                <span *ngIf="!closed" class="list-item-text"
+                  >Store & Products</span
+                >
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div *ngIf="!closed" class="my-2">
+              <i class="fa fa-circle-o py-2 sub-icon" aria-hidden="true"></i>
+              <span *ngIf="!closed" class="list-item-sub-text">Product</span>
+            </div>
+            <div *ngIf="!closed" class="my-2">
+              <i class="fa fa-circle-o sub-icon" aria-hidden="true"></i>
+              <span *ngIf="!closed" class="list-item-sub-text">Store</span
+              ><br />
+            </div>
+          </mat-expansion-panel>
+          <mat-list-item
+            routerLink="/reservations"
+            [routerLinkActive]="['is-active']"
+            [routerLinkActiveOptions]="{ exact: true }"
+            class="sideList"
+            role="listitem"
+          >
+            <i class="fa fa-address-card-o" aria-hidden="true"></i>
+            <span *ngIf="!closed" class="list-item-text">Reservation</span>
+          </mat-list-item>
+          <mat-expansion-panel
+            [hideToggle]="closed"
+            class="mat-exp-panel remove-mat-expansion-panel-padding"
+          >
+            <mat-expansion-panel-header class="mat-exp-header">
+              <mat-panel-title>
+                <i class="fa fa-money" aria-hidden="true"></i>
+                <span *ngIf="!closed" class="list-item-text">Payment</span>
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div *ngIf="!closed" class="my-2">
+              <i class="fa fa-circle-o py-2 sub-icon" aria-hidden="true"></i>
+              <span *ngIf="!closed" class="list-item-sub-text"
+                >Membership Payment</span
+              >
+            </div>
+            <div *ngIf="!closed" class="my-2">
+              <i class="fa fa-circle-o sub-icon" aria-hidden="true"></i>
+              <span *ngIf="!closed" class="list-item-sub-text">Income</span
+              ><br />
+            </div>
+            <div *ngIf="!closed" class="my-2">
+              <i class="fa fa-circle-o sub-icon" aria-hidden="true"></i>
+              <span *ngIf="!closed" class="list-item-sub-text">Expenses</span
+              ><br />
+            </div>
+          </mat-expansion-panel>
+          <mat-list-item
+            [routerLinkActive]="['is-active']"
+            [routerLinkActiveOptions]="{ exact: true }"
+            class="sideList"
+            role="listitem"
+          >
+            <i class="fa fa-commenting-o" aria-hidden="true"></i>
+            <span *ngIf="!closed" class="list-item-text">Message</span>
+          </mat-list-item>
+          <mat-list-item
+            routerLink="/newsletter"
+            [routerLinkActive]="['is-active']"
+            [routerLinkActiveOptions]="{ exact: true }"
+            class="sideList"
+            role="listitem"
+          >
+            <i class="fa fa-newspaper-o" aria-hidden="true"></i>
+            <span *ngIf="!closed" class="list-item-text">Newsletter</span>
+          </mat-list-item>
+          <mat-list-item
+            [routerLinkActive]="['is-active']"
+            [routerLinkActiveOptions]="{ exact: true }"
+            class="sideList"
+            role="listitem"
+          >
+            <i class="fa fa-bell" aria-hidden="true"></i>
+            <span *ngIf="!closed" class="list-item-text">Notice</span>
+          </mat-list-item>
+          <mat-list-item
+            [routerLinkActive]="['is-active']"
+            [routerLinkActiveOptions]="{ exact: true }"
+            class="sideList"
+            role="listitem"
+          >
+            <i class="fa fa-file-text-o" aria-hidden="true"></i>
+            <span *ngIf="!closed" class="list-item-text">Report</span>
+          </mat-list-item>
+          <mat-list-item
+            routerLink="/settings"
+            [routerLinkActive]="['is-active']"
+            [routerLinkActiveOptions]="{ exact: true }"
+            class="sideList"
+            role="listitem"
+          >
+            <i class="fa fa-sliders" aria-hidden="true"></i>
+            <span *ngIf="!closed" class="list-item-text">General Settings</span>
+          </mat-list-item>
+          <mat-list-item
+            [routerLinkActive]="['is-active']"
+            [routerLinkActiveOptions]="{ exact: true }"
+            class="sideList"
+            role="listitem"
+          >
+            <i class="fa fa-key" aria-hidden="true"></i>
+            <span *ngIf="!closed" class="list-item-text">Access Right</span>
+          </mat-list-item>
+        </mat-accordion>
+      </mat-list>
+    </mat-drawer>
+  </mat-drawer-container>
+</div>

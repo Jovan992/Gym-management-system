@@ -1,0 +1,13 @@
+mat-dialog-actions {
+    padding: 24px;
+    justify-content: flex-end;
+}
+
+h1 {
+    padding-top: 50px;
+}
+
+.mat-mdc-form-field-infix {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}

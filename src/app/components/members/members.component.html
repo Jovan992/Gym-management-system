@@ -1,0 +1,156 @@
+<div id="component-section" class="container-fluid p-4">
+  <div class="p-2 pb-4 component-header">
+    <div class="row component-heading-container">
+      <div class="col-9 component-title-container">
+        <i class="fa fa-bars component-icon fs-4" aria-hidden="true"></i>
+        <h1 id="component-title">Members List</h1>
+      </div>
+      <div class="col-3 d-flex justify-content-end">
+        <button class="add-btn" (click)="openAddMemberDialog()">
+          <i class="fa fa-plus" aria-hidden="true"></i> Add Member
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="pe-2 py-3 text-end">
+    <label class="me-1">Search</label>
+    <input
+      type="text"
+      class="component-filter-input"
+      (keyup)="applyFilter($event)"
+      #input
+    />
+  </div>
+
+  <div class="g-table-wrapper">
+    <table id="membersTable" mat-table matSort [dataSource]="dataSource">
+      <ng-container matColumnDef="photo">
+        <th mat-header-cell *matHeaderCellDef class="custom-mat-header-cell">
+          Photo
+        </th>
+        <td mat-cell class="custom-mat-cell py-2" *matCellDef="let members">
+          <img class="avatarImg" src="{{ members.photo }}" alt="member photo" />
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="name">
+        <th
+          mat-header-cell
+          mat-sort-header
+          *matHeaderCellDef
+          class="custom-mat-header-cell"
+        >
+          Name
+        </th>
+        <td mat-cell class="custom-mat-cell py-2" *matCellDef="let members">
+          {{ members.name }}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="surname">
+        <th
+          mat-header-cell
+          mat-sort-header
+          *matHeaderCellDef
+          class="custom-mat-header-cell"
+        >
+          Surname
+        </th>
+        <td mat-cell class="custom-mat-cell py-2" *matCellDef="let members">
+          {{ members.surname }}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="phoneNumber">
+        <th
+          mat-header-cell
+          mat-sort-header
+          *matHeaderCellDef
+          class="custom-mat-header-cell"
+        >
+          Phone number
+        </th>
+        <td mat-cell class="custom-mat-cell py-2" *matCellDef="let members">
+          {{ members.phoneNumber }}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="email">
+        <th
+          mat-header-cell
+          mat-sort-header
+          *matHeaderCellDef
+          class="custom-mat-header-cell"
+        >
+          Email
+        </th>
+        <td mat-cell class="custom-mat-cell py-2" *matCellDef="let members">
+          {{ members.email }}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="joiningDate">
+        <th
+          mat-header-cell
+          mat-sort-header
+          *matHeaderCellDef
+          class="custom-mat-header-cell"
+        >
+          Joining Date
+        </th>
+        <td mat-cell class="custom-mat-cell py-2" *matCellDef="let members">
+          {{
+            settingsService.dateFormat === "DD/MM/YYYY"
+              ? (members.joiningDate | date : "dd/MM/yy")
+              : (members.joiningDate | date : "MM/dd/yy")
+          }}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="membershipType">
+        <th
+          mat-header-cell
+          mat-sort-header
+          *matHeaderCellDef
+          class="custom-mat-header-cell"
+        >
+          Membership Type
+        </th>
+        <td mat-cell class="custom-mat-cell py-2" *matCellDef="let members">
+          {{ members.membershipType }}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef class="custom-mat-header-cell">
+          Action
+        </th>
+        <td mat-cell class="custom-mat-cell py-2" *matCellDef="let members">
+          <button
+            (click)="onEditMember(members)"
+            class="component-action-btn me-1 my-2"
+            id="component-action-btn-edit"
+          >
+            <i class="fa fa-pencil-square-o edit-icon" aria-hidden="true"></i>
+          </button>
+          <button
+            class="component-action-btn"
+            id="component-action-btn-delete"
+            (click)="onRemoveMember(members.id, members.name, 'members')"
+          >
+            <i class="fa fa-trash-o delete-icon" aria-hidden="true"></i>
+          </button>
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+      <tr
+        class="py-2 component-table-row"
+        mat-row
+        *matRowDef="let row; let even = even; columns: displayedColumns"
+        [ngClass]="{ 'gray-row': even }"
+      ></tr>
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell py-2" colspan="4">
+          No data matching the filter "{{ input.value }}"
+        </td>
+      </tr>
+    </table>
+  </div>
+  <mat-paginator
+    [pageSizeOptions]="[5, 10, 25, 100]"
+    aria-label="Select page of memberships"
+  ></mat-paginator>
+</div>

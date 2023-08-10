@@ -1,0 +1,74 @@
+<div mat-dialog-title class="nutrition-dialog-title">
+  <h1 class="m-0">
+    Nutrition-Schedule - {{ data ? data.data.memberName : "Add New" }}
+  </h1>
+</div>
+<form
+  [formGroup]="nutritionScheduleForm"
+  (ngSubmit)="onSubmit()"
+  class="nutrition-schedule-form"
+>
+  <div mat-dialog-content>
+    <div class="row d-flex">
+      <mat-form-field appearance="outline" class="pb-2 mt-3">
+        <mat-label>Member Name</mat-label>
+        <mat-select
+          required
+          panelClass="myPanelClass"
+          formControlName="memberName"
+        >
+          <mat-option
+            *ngFor="let member of members"
+            [value]="member.name + ' ' + member.surname + ' ' + member.id"
+          >
+            {{ member.name + " " + member.surname }}
+          </mat-option>
+        </mat-select>
+        <mat-error
+          *ngIf="
+          nutritionScheduleForm.controls['memberName'].errors?.['required']
+          "
+        >
+          This field is required
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="pb-2" appearance="outline">
+        <mat-label>Nutrition Goal</mat-label>
+        <input matInput required type="text" formControlName="nutritionGoal" />
+        <mat-error
+          *ngIf="          
+          nutritionScheduleForm.controls['nutritionGoal'].errors?.['required']
+          "
+        >
+          This field is required
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="d-block">
+      <app-nutrition-calendar></app-nutrition-calendar>
+    </div>
+  </div>
+
+  <div
+    mat-dialog-actions
+    class="justify-content-end g-component-dialog-actions-btn-container"
+  >
+    <button
+      mat-raised-button
+      class="dialog-button dialog-button-cancel"
+      type="button"
+      [mat-dialog-close]="false"
+    >
+      Close
+    </button>
+    <button
+      *ngIf="!data"
+      mat-raised-button
+      class="dialog-button dialog-button-save"
+      type="submit"
+    >
+      Save
+    </button>
+  </div>
+</form>

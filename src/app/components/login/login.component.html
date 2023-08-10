@@ -1,0 +1,41 @@
+<div class="g-component-container container-fluid d-flex justify-content-center align-items-center">
+    <div class="g-form-container text-center">
+        <div>
+            <img class="g-form-gym-icon" src="assets/icons/gym.png" alt="">
+            <h1>GYM MASTER</h1>
+        </div>
+        <form [formGroup]="logInForm" (ngSubmit)="submitLogInForm()" (change)="checkExistingAccount()">
+            <div class="row d-flex gap-2">
+                <mat-form-field appearance="outline">
+                    <mat-label>Username</mat-label>
+                    <input matInput placeholder="Username" formControlName="username">
+                    <mat-error
+                        *ngIf="logInForm.controls['username'].errors?.['required'] && logInForm.controls['username'].touched">Username
+                        field is
+                        required</mat-error>
+                    <mat-error *ngIf="logInForm.controls['username'].errors?.['incorrect'] && !logInForm.controls['username'].errors?.['required'] && !logInForm.controls['password'].errors?.['required']">Username doesn't exist!
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Password</mat-label>
+                    <input matInput placeholder="Password" [type]="showPassword ? 'text' : 'password'"
+                        formControlName="password">
+                    <mat-icon matSuffix (click)="showPassword = !showPassword">{{showPassword ? 'visibility_off' :
+                        'visibility'}}</mat-icon>
+                    <mat-error
+                        *ngIf="logInForm.controls['password'].errors?.['required'] && logInForm.controls['password'].touched">Password
+                        is
+                        required</mat-error>
+                    <mat-error *ngIf="!logInForm.controls['username'].errors?.['incorrect'] && logInForm.controls['password'].errors?.['incorrect'] && logInForm.controls['password'].value">Incorrect password!
+                    </mat-error>
+                </mat-form-field>
+                <div>
+                    <button mat-raised-button type="submit" class="g-submit-button">Login</button>
+                </div>
+                <div>
+                    <p class="g-form-hyperlink" routerLink="/register">Registration</p>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

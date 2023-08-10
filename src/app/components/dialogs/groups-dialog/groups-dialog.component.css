@@ -1,0 +1,96 @@
+.group-dialog-upload-img {
+  padding: 0 24px;
+}
+
+.group-dialog-img-preview {
+  width: 2.8rem;
+  height: 2.8rem;
+}
+
+.mat-mdc-dialog-actions.group-dialog-actions-btn-container {
+  justify-content: end;
+  padding: 20px 24px;
+}
+
+.group-dialog-choose-photo-btn {
+  background-color: var(--blue-ivy);
+  color: var(--white);
+  padding: 0.5rem;
+  border-radius: 0.3rem;
+  cursor: pointer;
+  margin-top: 1rem;
+  border: none;
+}
+
+.group-dialog-title.mat-mdc-dialog-title {
+  line-height: 0.5rem;
+  padding-bottom: 0;
+}
+
+.group-dialog-number-groups-right-align {
+  text-align: right;
+}
+
+.mat-mdc-form-field-error.group-photo-error {
+  font-size: 12px;
+}
+
+/*drag and drop css**/
+
+.group-assign-member-section {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.group-members-container {
+  flex: 1;
+}
+
+.group-members-container .cdk-drop-list.group-members-list {
+  height: 182px;
+  overflow: auto;
+}
+
+.group-members-list {
+  border: solid 1px #ccc;
+  min-height: 60px;
+  background: white;
+  border-radius: 4px;
+  overflow: hidden;
+  display: block;
+}
+
+.group-member-box {
+  padding: 10px 10px;
+  border-bottom: solid 1px #ccc;
+  color: rgba(0, 0, 0, 0.87);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  cursor: move;
+  background: white;
+  font-size: 14px;
+}
+
+.cdk-drag-preview {
+  box-sizing: border-box;
+  border-radius: 4px;
+  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+    0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);
+}
+
+.cdk-drag-placeholder {
+  opacity: 0;
+}
+
+.cdk-drag-animating {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.group-members-list.cdk-drop-list-dragging
+  .example-box:not(.cdk-drag-placeholder) {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}

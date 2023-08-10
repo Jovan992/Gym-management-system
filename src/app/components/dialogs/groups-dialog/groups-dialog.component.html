@@ -1,0 +1,165 @@
+<ng-container *ngIf="allowAddingGroup; else notAllowed">
+  <div mat-dialog-title class="group-dialog-title">
+    <h1>Groups Form - {{ data ? "Update" : "Add New" }}</h1>
+  </div>
+  <div class="group-dialog-upload-img">
+    <img
+      [src]="imgData ? imgData : 'assets/icons/treadmil-icon.png'"
+      class="rounded-circle me-3 group-dialog-img-preview"
+    />
+    <button
+      (click)="uploader.click()"
+      class="group-dialog-choose-photo-btn p-1"
+    >
+      <input type="file" hidden (change)="onFileSelected($event)" #uploader />
+      Choose Photo
+    </button>
+  </div>
+
+  <form [formGroup]="groupForm" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="outline" class="d-none">
+      <mat-label>Photo</mat-label><br />
+      <input matInput formControlName="photo" />
+    </mat-form-field>
+    <mat-error
+      class="ms-4 group-photo-error"
+      *ngIf="
+    groupForm.controls['photo'].errors?.['required'] && groupForm.controls['photo'].touched
+    "
+      >Please select photo!</mat-error
+    >
+    <div mat-dialog-content>
+      <div class="row d-flex">
+        <mat-form-field class="pb-3" appearance="outline">
+          <mat-label>Group Name</mat-label>
+          <input
+            maxlength="128"
+            matInput
+            required
+            type="text"
+            formControlName="groupName"
+          />
+          <mat-error
+            *ngIf="          
+            groupForm.controls['groupName'].errors?.['required']
+          "
+          >
+            This field is required
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="pb-3">
+          <mat-label>Number of Members</mat-label>
+          <input
+            required
+            matInput
+            type="number"
+            class="group-dialog-number-groups-right-align"
+            placeholder="0"
+            min="2"
+            max="allowedNumberOfMembers"
+            formControlName="numberOfMembers"
+          />
+
+          <span matTextSuffix></span>
+          <mat-error
+            *ngIf="
+          groupForm.controls['numberOfMembers'].errors?.['required']
+          "
+          >
+            This field is required!
+          </mat-error>
+
+          <mat-error
+            *ngIf="groupForm.controls['numberOfMembers'].errors?.['min']"
+          >
+            Minimum number of members is 2!
+          </mat-error>
+          <mat-error
+            *ngIf="groupForm.controls['numberOfMembers'].errors?.['max']"
+          >
+            Maximum number of members is exceeded!
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div cdkDropListGroup class="group-assign-member-section">
+        <div class="group-members-container">
+          <h2>Available members</h2>
+
+          <div
+            #availableList="cdkDropList"
+            [cdkDropListConnectedTo]="[assignedList]"
+            cdkDropList
+            [cdkDropListData]="availableMembers"
+            class="group-members-list"
+            cdkDropListSortingDisabled
+            (cdkDropListDropped)="drop($event)"
+          >
+            <div
+              class="group-member-box"
+              *ngFor="let member of availableMembers"
+              cdkDrag
+            >
+              {{ member.name }} {{ member.surname }}
+            </div>
+          </div>
+        </div>
+
+        <div class="group-members-container">
+          <h2>Assigned members</h2>
+          <div
+            #assignedList="cdkDropList"
+            [cdkDropListConnectedTo]="[availableList]"
+            cdkDropList
+            [cdkDropListData]="groupAssignedMembers"
+            class="group-members-list"
+            (cdkDropListDropped)="drop($event)"
+          >
+            <div
+              class="group-member-box"
+              *ngFor="let member of groupAssignedMembers"
+              cdkDrag
+            >
+              {{ member.name }} {{ member.surname }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      mat-dialog-actions
+      class="justify-content-end group-dialog-actions-btn-container"
+    >
+      <button
+        mat-raised-button
+        class="dialog-button dialog-button-cancel"
+        type="button"
+        [mat-dialog-close]="false"
+      >
+        Close
+      </button>
+      <button
+        mat-raised-button
+        class="dialog-button dialog-button-save"
+        type="submit"
+      >
+        {{ data ? "Update" : "Save" }}
+      </button>
+    </div>
+  </form>
+</ng-container>
+<ng-template #notAllowed>
+  <div class="group-warning-add p-3">
+    <h1>Warning!</h1>
+    <p>You can't create a group since there is not enough available members!</p>
+    <div class="d-flex justify-content-end">
+      <button
+        mat-raised-button
+        class="dialog-button dialog-button-cancel"
+        type="button"
+        [mat-dialog-close]="false"
+      >
+        Close
+      </button>
+    </div>
+  </div>
+</ng-template>

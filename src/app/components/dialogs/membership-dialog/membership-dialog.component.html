@@ -1,0 +1,105 @@
+<div mat-dialog-title class="membership-dialog-title">
+  <h1>Membership Form - {{ data ? "Update" : "Add New" }}</h1>
+</div>
+<div class="membership-dialog-upload-img">
+  <img
+    [src]="imgData ? imgData : 'assets/icons/treadmil-icon.png'"
+    class="rounded-circle me-3 membership-dialog-img-preview"
+  />
+  <button
+    (click)="uploader.click()"
+    class="membership-dialog-choose-photo-btn p-1"
+  >
+    <input type="file" hidden (change)="onFileSelected($event)" #uploader />
+    Choose Photo
+  </button>
+</div>
+<form [formGroup]="membershipForm" (ngSubmit)="onSubmit()">
+  <mat-form-field appearance="outline" class="d-none">
+    <mat-label>Photo</mat-label><br />
+    <input matInput formControlName="photo" />
+  </mat-form-field>
+  <mat-error
+    class="ms-4 membership-price-error"
+    *ngIf="
+    membershipForm.controls['photo'].errors?.['required'] && membershipForm.controls['photo'].touched
+    "
+    >Please select photo!</mat-error
+  >
+  <div mat-dialog-content>
+    <div class="row d-flex">
+      <mat-form-field class="pb-3" appearance="outline">
+        <mat-label>Membership name</mat-label>
+        <input matInput required type="text" formControlName="membershipName" />
+        <mat-error
+          *ngIf="          
+            membershipForm.controls['membershipName'].errors?.['required']
+          "
+        >
+          This field is required
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="pb-3">
+        <mat-label>Period</mat-label>
+        <mat-select panelClass="myPanelClass" formControlName="period">
+          <mat-option *ngFor="let period of periods" [value]="period">
+            {{ period }}
+          </mat-option>
+        </mat-select>
+        <mat-error
+          *ngIf="
+          membershipForm.controls['period'].errors?.['required']
+          "
+        >
+          This field is required
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline" floatLabel="always" class="pb-3">
+        <mat-label>Price</mat-label>
+        <input
+          required
+          matInput
+          type="number"
+          class="membership-dialog-price-right-align"
+          placeholder="0"
+          min="25"
+          formControlName="price"
+        />
+        <span matTextPrefix>€&nbsp;</span>
+        <span matTextSuffix></span>
+        <mat-error
+          *ngIf="
+          membershipForm.controls['price'].errors?.['required']
+          "
+        >
+          This field is required!
+        </mat-error>
+
+        <mat-error *ngIf="membershipForm.controls['price'].errors?.['min']">
+          Minimum price is €25!
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div
+    mat-dialog-actions
+    class="justify-content-end membership-dialog-actions-btn-container"
+  >
+    <button
+      mat-raised-button
+      class="dialog-button dialog-button-cancel"
+      type="button"
+      [mat-dialog-close]="false"
+    >
+      Close
+    </button>
+    <button
+      mat-raised-button
+      class="dialog-button dialog-button-save"
+      type="submit"
+    >
+      {{ data ? "Update" : "Save" }}
+    </button>
+  </div>
+</form>

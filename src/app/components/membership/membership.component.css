@@ -1,0 +1,21 @@
+.custom-mat-cell.mat-mdc-cell {
+  border: none;
+}
+
+.custom-mat-header-cell.mat-mdc-header-cell {
+  border-bottom: 2px solid var(--outer-space);
+  color: var(--outer-space);
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.gray-row {
+  background-color: var(--iron) !important;
+}
+
+.membership-symbol {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  border: 0.1rem solid var(--red-darker-primary-transparent);
+}

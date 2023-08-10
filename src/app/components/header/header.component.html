@@ -1,0 +1,61 @@
+<div class="row">
+  <div class="col-12 px-0">
+    <mat-toolbar class="p-0 toolbar-line">
+      <div class="main-nav-content position-relative">
+        <div
+          class="title-container ps-2 d-none d-md-flex position-absolute start-0 translate-start-x"
+        >
+          <i class="me-2 fa fa-superpowers icon" aria-hidden="true"></i>
+          <p class="mb-0">
+            {{ settingsService.gymName }}- GYM Management System
+          </p>
+        </div>
+        <div class="position-absolute translate-end-x end-0 d-flex">
+          <button
+            mat-button
+            [matMenuTriggerFor]="menu"
+            class="user-menu-button d-none d-md-flex"
+          >
+            <div class="user-button-content pe-3">
+              <img
+                class="user-photo-small"
+                src="https://images.unsplash.com/photo-1499887142886-791eca5918cd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=580&q=80"
+                alt="user photo"
+              />
+              <p class="mb-0">{{_authService.currentAccount.name + " " + _authService.currentAccount.surname }}</p>
+            </div>
+          </button>
+          <button
+            class="small-screen-menu-button d-md-none d-flex align-self-stretch"
+            mat-icon-button
+            [matMenuTriggerFor]="menu"
+            aria-label="Example icon-button with a menu"
+          >
+            <mat-icon>more_vert</mat-icon>
+          </button>
+        </div>
+        <mat-menu
+          #menu="matMenu"
+          class="custom-menu"
+          backdropClass="customize-mat-menu"
+        >
+          <div class="user-info-card">
+            <img
+              class="user-photo"
+              src="https://images.unsplash.com/photo-1499887142886-791eca5918cd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=580&q=80"
+              alt="user photo"
+            />
+            <span>Mary Collins - Administrator</span>
+            <span id="membership-status-text">Member since January '70</span>
+          </div>
+          <div class="user-info-buttons-container">
+            <button mat-raised-button class="user-info-buttons">Profile</button>
+            <button mat-raised-button class="user-info-buttons" (click)="signOut()">
+              Sign out
+            </button>
+          </div>
+        </mat-menu>
+      </div>
+    </mat-toolbar>
+  </div>
+</div>

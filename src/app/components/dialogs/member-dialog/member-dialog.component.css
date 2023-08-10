@@ -1,0 +1,31 @@
+.member-dialog-price-right-align {
+  text-align: right;
+}
+
+.member-dialog-upload-img {
+  padding-left: 24px;
+}
+
+.member-dialog-img-preview {
+  width: 2.8rem;
+  height: 2.8rem;
+}
+
+.mat-mdc-form-field-error.member-photo-error {
+  font-size: 12px;
+}
+
+.member-dialog-choose-photo-btn {
+  background-color: var(--blue-ivy);
+  color: var(--white);
+  padding: 0.5rem;
+  border-radius: 0.3rem;
+  cursor: pointer;
+  margin-top: 1rem;
+  border: none;
+} 
+
+.member-dialog-title.mat-mdc-dialog-title{
+  line-height: 0.5rem;
+}
+

@@ -1,0 +1,48 @@
+:root {
+  /* colors */
+
+  /*header*/
+  --persian-green: #009286;
+  --persian-green-transparent: #00928627;
+  --teal: #08a497;
+
+  /*icons*/
+  --red-primary: #ef3c3b;
+  --red-darker-primary: #932323;
+  --red-darker-primary-transparent: #93232379;
+
+  --aluminium: #939799;
+  --aluminium-transparent: #93979971;
+  --iron: #dcd6d6;
+  --outer-space: #444444;
+
+  /* sidebar */
+  --dark-jungle-green: #122125;
+  --gable-green: #1c3236;
+  --dark-teal: #0b504e;
+  --white: #fff;
+
+  /* sidebar */
+  --dark-jungle-green: #122125;
+  --gable-green: #1c3236;
+  --dark-teal: #0b504e;
+
+  --jellyfish: #51cea1;
+  --crystal-blue: #5abae6;
+  --mango-orange: #ff7f49;
+  --naples-yellow: #ffd550;
+
+  /*table buttons*/
+  --sunrise-orange: #ec6a41;
+  /*delete btn*/
+  --sunrise-orange-disabled: #f4a68d;
+  /*disabled delete btn*/
+  --blue-ivy: #2c8aca;
+  /*edit button*/
+  --blue-ivy-disabled: #abd0ea;
+  /*disabled edit btn*/
+
+  /* scrollbar */
+  --scrollbar-track-color: var(--gable-green);
+  --scrollbar-thumb-color: var(--persian-green);
+}

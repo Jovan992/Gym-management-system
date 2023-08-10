@@ -1,0 +1,12 @@
+<div class='schedule-calendar-container p-1 position-relative'>
+    <button mat-dialog-close class="position-absolute end-0 top-0 m-2">x</button>
+    <div class='schedule-calendar-main-div'>
+        <full-calendar [options]='calendarOptions()' id="schedule-calendar"
+        class="schedule-calendar">
+            <ng-template #eventContent let-arg>
+                <b>{{ arg.timeText }}</b>
+                <i>{{ arg.event.title }}</i>
+            </ng-template>
+        </full-calendar>
+    </div>
+</div>

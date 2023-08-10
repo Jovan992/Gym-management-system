@@ -1,0 +1,13 @@
+mat-form-field {
+    display: block;
+    appearance: outline;
+}
+
+mat-dialog-actions {
+    padding: 24px;
+    justify-content: flex-end;
+}
+
+h1 {
+    padding-top: 50px;
+}

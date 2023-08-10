@@ -1,0 +1,89 @@
+<div class="g-component-container container-fluid d-flex justify-content-center align-items-center">
+    <div class="g-form-container text-center">
+        <div>
+            <img class="g-form-gym-icon" src="assets/icons/gym.png" alt="">
+            <h1>GYM MASTER</h1>
+        </div>
+        <form [formGroup]="registerForm" (ngSubmit)="submitRegisterForm()" novalidate>
+            <div class="row d-flex gap-2">
+                <mat-form-field appearance="outline">
+                    <mat-label>Name</mat-label>
+                    <input matInput placeholder="Name" formControlName="name">
+                    <mat-error
+                        *ngIf="registerForm.controls['name'].errors?.['required'] && registerForm.controls['name'].touched">Name
+                        field is
+                        required</mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Surname</mat-label>
+                    <input matInput placeholder="Surname" formControlName="surname">
+                    <mat-error
+                        *ngIf="registerForm.controls['surname'].errors?.['required'] && registerForm.controls['surname'].touched">Surname
+                        field is
+                        required</mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Email</mat-label>
+                    <input matInput placeholder="Email" formControlName="email">
+                    <mat-error
+                        *ngIf="registerForm.controls['email'].errors?.['required'] && registerForm.controls['email'].touched">Email
+                        field
+                        is required</mat-error>
+                    <mat-error
+                        *ngIf="registerForm.controls['email'].errors?.['email'] && registerForm.controls['email'].touched">Please
+                        type
+                        in
+                        correct email address.</mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Phone</mat-label>
+                    <input matInput type="number" placeholder="Phone" formControlName="phone">
+                    <mat-error
+                        *ngIf="registerForm.controls['phone'].errors?.['required'] && registerForm.controls['phone'].touched">Phone
+                        field is
+                        required</mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Username</mat-label>
+                    <input matInput placeholder="Name" formControlName="username" (keyup)="checkUsername()">
+                    <mat-error
+                        *ngIf="registerForm.controls['username'].errors?.['required'] && registerForm.controls['username'].touched">Username
+                        field is
+                        required</mat-error>
+                    <mat-error *ngIf="registerForm.controls['username'].errors?.['incorrect'] && registerForm.controls['username'].touched">User with that
+                        username
+                        already exists!</mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Password</mat-label>
+                    <input matInput placeholder="Password" [type]="showPassword ? 'text' : 'password'"
+                        formControlName="password">
+                    <mat-icon matSuffix (click)="showPassword = !showPassword">{{showPassword ? 'visibility_off' :
+                        'visibility'}}</mat-icon>
+                    <mat-error
+                        *ngIf="registerForm.controls['password'].errors?.['required'] && registerForm.controls['password'].touched">Password
+                        is
+                        required</mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Confirm Password</mat-label>
+                    <input matInput placeholder="Password" [type]="showPassword ? 'text' : 'password'"
+                        formControlName="confirmPassword">
+                    <mat-icon matSuffix (click)="showPassword = !showPassword">{{showPassword ? 'visibility_off' :
+                        'visibility'}}</mat-icon>
+                    <mat-error *ngIf="registerForm.errors?.['passwordmatcherror']">Passwords
+                        do not match</mat-error>
+                    <mat-error
+                        *ngIf="registerForm.controls['confirmPassword'].errors?.['required'] && registerForm.controls['confirmPassword'].touched">Password
+                        is
+                        required</mat-error>
+                </mat-form-field>
+                <div>
+                    <button mat-raised-button type="submit" class="g-submit-button mb-2">Register</button>
+                    <span>Already a member? &nbsp;</span><span routerLink="/login" class="g-form-hyperlink">Log
+                        in</span>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

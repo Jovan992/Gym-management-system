@@ -1,0 +1,18 @@
+<div class="newsletter-dialog-container p-4">
+  <div class="newsletter-dialog-img-wrapper">
+    <img class="img-fluid newsletter-dialog-img" src="{{ data.img }}" alt="" />
+  </div>
+  <div>
+    <h1>{{ data.title }}</h1>
+    <p class="newsletter-dialog-news-text">
+      {{ data.text }}
+    </p>
+  </div>
+  <button
+    class="dialog-button dialog-button-cancel btn"
+    type="button"
+    [mat-dialog-close]="false"
+  >
+    Close
+  </button>
+</div>

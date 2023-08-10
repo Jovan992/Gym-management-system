@@ -1,0 +1,96 @@
+<div class="container-fluid p-4" id="component-section">
+  <div class="p-2 pb-4 settings-header">
+    <div class="row component-heading-container">
+      <div class="col-9 component-title-container">
+        <h1 id="component-title" class="mb-3">General Settings</h1>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <h2 id="component-subtitle" class="mb-3">System Settings</h2>
+  </div>
+
+  <div class="row mx-5">
+    <form
+      [formGroup]="settingsForm"
+      (ngSubmit)="saveSettings()"
+      class="ms-2 me-2"
+    >
+      <mat-form-field class="settings-mat-form-field">
+        <mat-label>Gym Name</mat-label>
+        <input matInput formControlName="gymName" required />
+        <mat-error
+          *ngIf="          
+            settingsForm.controls['gymName'].errors?.['required']
+          "
+        >
+          This field is required
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="settings-mat-form-field">
+        <mat-label>Establishment Date</mat-label>
+        <input
+          matInput
+          formControlName="establishmentDate"
+          [readonly]="true"
+          required
+        />
+      </mat-form-field>
+      <mat-form-field class="settings-mat-form-field">
+        <mat-label>Address</mat-label>
+        <input matInput formControlName="address" required />
+        <mat-error
+          *ngIf="          
+          settingsForm.controls['address'].errors?.['required']
+        "
+        >
+          This field is required
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="settings-mat-form-field">
+        <mat-label>Phone Number</mat-label>
+        <input matInput formControlName="phoneNumber" required />
+        <mat-error
+          *ngIf="          
+          settingsForm.controls['phoneNumber'].errors?.['required']
+        "
+        >
+          This field is required
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="settings-mat-form-field">
+        <mat-label>Country</mat-label>
+        <mat-select panelClass="myPanelClass" formControlName="country">
+          <mat-option *ngFor="let country of countries" [value]="country">
+            {{ country }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field class="settings-mat-form-field">
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email" required />
+        <mat-error
+          *ngIf="settingsForm.controls['email'].errors?.['required'] && settingsForm.controls['email'].touched"
+          >This field is required</mat-error
+        >
+        <mat-error
+          *ngIf="settingsForm.controls['email'].errors?.['email'] && settingsForm.controls['email'].touched"
+          >Please type in correct email address.</mat-error
+        >
+      </mat-form-field>
+      <mat-form-field class="settings-mat-form-field">
+        <mat-label>Date Format</mat-label>
+        <mat-select panelClass="myPanelClass" formControlName="dateFormat">
+          <mat-option *ngFor="let date of dateFormats" [value]="date">
+            {{ date }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <div class="settings-btn-container d-flex justify-content-end">
+        <button class="settings-save-btn" mat-raised-button type="submit">
+          Save
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,89 @@
+<h1 mat-dialog-title>{{ data? 'Edit Reservation': 'Add Reservation'}}</h1>
+<form [formGroup]="reservationDialogForm" (ngSubmit)="onFormSubmit()">
+    <div mat-dialog-content>
+        <div class="row d-flex gap-2">
+            <mat-form-field class="mt-1" appearance="outline">
+                <mat-label>Event Name</mat-label>
+                <input matInput formControlName="name">
+                <mat-error
+                    *ngIf="reservationDialogForm.controls['name'].errors?.['required'] && reservationDialogForm.controls['name'].touched">Event
+                    Name
+                    field is
+                    required</mat-error>
+            </mat-form-field>
+            <mat-form-field class="mt-1" appearance="outline">
+                <mat-label>Event Date</mat-label>
+                <input formControlName="date" matInput placeholder="{{ _settingsService.dateFormat }}" [min]="minDate" [max]="maxDate" [matDatepicker]="picker" />
+                <mat-hint>{{ _settingsService.dateFormat }}</mat-hint>
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+                <mat-error *ngIf="reservationDialogForm.controls['date'].errors?.['matDatepickerMin']">You must chose
+                    date after today!</mat-error>
+                <mat-error *ngIf="reservationDialogForm.controls['date'].errors?.['matDatepickerMax']">Entered date is
+                    too big!</mat-error>
+                <mat-error
+                    *ngIf="reservationDialogForm.controls['date'].hasError('matDatepickerParse') && !reservationDialogForm.controls['date'].value">Invalid
+                    date</mat-error>
+                <mat-error
+                    *ngIf="reservationDialogForm.controls['date'].errors?.['required'] && !reservationDialogForm.controls['date'].hasError('matDatepickerParse') ">
+                    Event Date field is required
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field class="mt-1" appearance="outline">
+                <mat-label>Place</mat-label>
+                <input matInput formControlName="place">
+                <mat-error
+                    *ngIf="reservationDialogForm.controls['place'].errors?.['required'] && reservationDialogForm.controls['place'].touched">Event
+                    Place
+                    field is
+                    required</mat-error>
+            </mat-form-field>
+            <mat-form-field class="mt-1" appearance="outline">
+                <mat-label>Start time</mat-label>
+                <input matInput [format]="24" [ngxMatTimepicker]="pickerA" readonly formControlName="start" />
+                <mat-icon matSuffix (click)="pickerA.open()">
+                    watch_later
+                </mat-icon>
+                <mat-error
+                    *ngIf="reservationDialogForm.controls['start'].errors?.['required'] && reservationDialogForm.controls['start'].touched">Start
+                    Time
+                    field is
+                    required</mat-error>
+            </mat-form-field>
+            <ngx-mat-timepicker #pickerA></ngx-mat-timepicker>
+
+            <mat-form-field class="mt-1" appearance="outline">
+                <mat-label>End time</mat-label>
+                <input matInput [format]="24" [ngxMatTimepicker]="pickerB" readonly formControlName="end" />
+                <mat-icon matSuffix (click)="pickerB.open()">
+                    watch_later
+                </mat-icon>
+
+                <mat-error
+                    *ngIf="reservationDialogForm.controls['end'].errors?.['required'] && reservationDialogForm.controls['end'].touched">End
+                    Time
+                    field is
+                    required</mat-error>
+                <mat-error *ngIf="reservationDialogForm.controls['end'].errors?.['incorrect']">End
+                    time needs to be after start time!</mat-error>
+            </mat-form-field>
+            <ngx-mat-timepicker #pickerB></ngx-mat-timepicker>
+
+            <mat-form-field class="mt-1" appearance="outline">
+                <mat-label>Available Slots</mat-label>
+                <input matInput type="number" formControlName="slots">
+                <mat-error
+                    *ngIf="reservationDialogForm.controls['slots'].errors?.['required'] && reservationDialogForm.controls['slots'].touched">Available
+                    Slots
+                    field is
+                    required</mat-error>
+            </mat-form-field>
+        </div>
+    </div>
+    <mat-dialog-actions>
+        <button mat-raised-button type="button" class="dialog-button dialog-button-cancel"
+            [mat-dialog-close]="false">Cancel</button>
+        <button mat-raised-button class="dialog-button dialog-button-save" type="submit">{{data? 'Update':
+            'Save'}}</button>
+    </mat-dialog-actions>
+</form>

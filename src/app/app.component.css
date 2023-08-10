@@ -1,0 +1,28 @@
+#main-div,
+#right-container {
+  background-color: var(--iron);
+}
+
+#left-container {
+  background-color: var(--dark-jungle-green);
+  max-height: calc(100vh - 64px);
+}
+
+#main-div {
+  max-height: calc(100vh - 128px);
+
+}
+
+#right-container {
+  height: calc(100vh - 64px);
+  max-height: calc(100vh - 64px);
+  overflow-x: auto;
+  overflow-y: auto;
+  
+}
+
+.side {
+  max-height: calc(100vh - 128px) !important;
+  height: 100%;
+  display: block !important;
+}

@@ -1,0 +1,125 @@
+<div id="component-section" class="container-fluid p-4">
+  <div class="p-2 pb-4 component-header">
+    <div class="row component-heading-container">
+      <div class="col-9 component-title-container">
+        <i class="fa fa-bars component-icon fs-4" aria-hidden="true"></i>
+        <h1 id="component-title">Membership List</h1>
+      </div>
+      <div class="col-3 d-flex justify-content-end">
+        <button class="add-btn" (click)="openAddMembershipDialog()">
+          <i class="fa fa-plus" aria-hidden="true"></i> Membership
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="pe-2 py-3 text-end">
+    <label class="me-1">Search</label>
+    <input
+      type="text"
+      class="component-filter-input"
+      (keyup)="applyFilter($event)"
+      #input
+    />
+  </div>
+
+  <div class="g-table-wrapper">
+    <table id="membershipTable" mat-table matSort [dataSource]="dataSource">
+      <ng-container matColumnDef="photo">
+        <th mat-header-cell *matHeaderCellDef class="custom-mat-header-cell">
+          Photo
+        </th>
+        <td mat-cell class="custom-mat-cell py-2" *matCellDef="let membership">
+          <img
+            class="avatarImg"
+            src="{{ membership.photo }}"
+            alt="membership symbol"
+          />
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="membershipName">
+        <th
+          mat-header-cell
+          mat-sort-header
+          *matHeaderCellDef
+          class="custom-mat-header-cell"
+        >
+          Membership Name
+        </th>
+        <td mat-cell class="custom-mat-cell py-2" *matCellDef="let membership">
+          {{ membership.membershipName }}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="period">
+        <th
+          mat-header-cell
+          mat-sort-header
+          *matHeaderCellDef
+          class="custom-mat-header-cell"
+        >
+          Period
+        </th>
+        <td mat-cell class="custom-mat-cell py-2" *matCellDef="let membership">
+          {{ membership.period }}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="price">
+        <th
+          mat-header-cell
+          mat-sort-header
+          *matHeaderCellDef
+          class="custom-mat-header-cell"
+        >
+          Price
+        </th>
+        <td mat-cell class="custom-mat-cell py-2" *matCellDef="let membership">
+          {{ membership.price | currency : "EUR" : "symbol" : "1.0-0" }}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef class="custom-mat-header-cell">
+          Action
+        </th>
+        <td mat-cell class="custom-mat-cell py-2" *matCellDef="let membership">
+          <button
+            [disabled]="defaultMemberships.includes(membership.membershipName)"
+            class="component-action-btn me-1 my-2"
+            id="component-action-btn-edit"
+            (click)="onEditMembership(membership)"
+          >
+            <i class="fa fa-pencil-square-o edit-icon" aria-hidden="true"></i>
+          </button>
+          <button
+            [disabled]="defaultMemberships.includes(membership.membershipName)"
+            class="component-action-btn"
+            id="component-action-btn-delete"
+            (click)="
+              onRemoveMembership(
+                membership.id,
+                membership.membershipName,
+                'membership'
+              )
+            "
+          >
+            <i class="fa fa-trash-o delete-icon" aria-hidden="true"></i>
+          </button>
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+      <tr
+        class="py-2 component-table-row"
+        mat-row
+        *matRowDef="let row; let even = even; columns: displayedColumns"
+        [ngClass]="{ 'gray-row': even }"
+      ></tr>
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell py-2" colspan="4">
+          No data matching the filter "{{ input.value }}"
+        </td>
+      </tr>
+    </table>
+  </div>
+  <mat-paginator
+    [pageSizeOptions]="[5, 10, 25, 100]"
+    aria-label="Select page of memberships"
+  ></mat-paginator>
+</div>

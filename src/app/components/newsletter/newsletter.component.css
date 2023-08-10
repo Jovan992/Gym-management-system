@@ -1,0 +1,125 @@
+.newsletter-wrapper {
+  max-height: 80vh;
+  overflow: auto;
+}
+.newsletter-container {
+  margin: 0 50px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 2rem;
+  min-height: 40vh;
+}
+.card {
+  min-height: 60%;
+  border-radius: 20px;
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  max-width: 100%;
+  width: 100%;
+  height: 50%;
+  padding: 0;
+}
+
+.card-title {
+  line-height: 1;
+}
+.img-wrapper {
+  width: 100%;
+  max-width: 100%;
+  max-height: 40%;
+  display: flex;
+  justify-content: center;
+  align-items: flex;
+}
+.card-inner-div {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+img {
+  max-width: 100%;
+  width: 100%;
+  height: 100%;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+.newsletter-btn-open-dialog {
+  background-color: var(--teal);
+
+  width: 50%;
+  text-align: center;
+  color: white;
+  border-radius: 0.3rem;
+}
+
+.newsletter-lds-dual-ring {
+  display: inline-block;
+  width: 80px;
+  height: 80px;
+}
+.dialog-responsive {
+  width: 30%;
+}
+.newsletter-lds-dual-ring:after {
+  content: " ";
+  display: block;
+  width: 64px;
+  height: 64px;
+  margin: 8px;
+  border-radius: 50%;
+  border: 6px solid #fff;
+  border-color: #fff transparent #fff transparent;
+  animation: lds-dual-ring 1.2s linear infinite;
+}
+@keyframes newsletter-lds-dual-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@media screen and (max-width: 1300px) {
+  .newsletter-container {
+    gap: 1.2rem;
+  }
+  .newsletter-btn-open-dialog {
+    width: 70%;
+  }
+  .card-title {
+    font-size: 18px;
+  }
+}
+@media screen and (max-width: 1000px) {
+  .newsletter-wrapper {
+    display: flex;
+    justify-content: center;
+  }
+  .newsletter-container {
+    grid-template-columns: 1fr;
+    width: 60%;
+    gap: 1rem;
+    font-size: 14px;
+  }
+  .img-wrapper {
+    height: 30%;
+  }
+  .card {
+    min-height: 60vh;
+  }
+  .dialog-responsive {
+    width: 20%;
+  }
+}
+@media screen and (max-width: 600px) {
+  .newsletter-container {
+    width: 80%;
+  }
+}

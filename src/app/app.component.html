@@ -1,0 +1,19 @@
+<ng-container  *ngIf="loggedIn; else loggedOut;">
+    <div class="container-fluid px-0">
+        <div class="d-flex">
+            <div id="left-container" class="px-0">
+                <app-sidebar class="side"></app-sidebar>
+            </div>
+            <div id="right-container" class="px-0 mx-0 flex-grow-1">
+                <div class="row mx-0 px-0"><app-header></app-header></div>
+                <div id="main-div" class="p-3">
+                    <router-outlet></router-outlet>
+                </div>
+        </div>
+    </div>
+    <app-footer class="px-0"></app-footer>
+</div>
+</ng-container>
+<ng-template #loggedOut>
+    <router-outlet></router-outlet>
+</ng-template>

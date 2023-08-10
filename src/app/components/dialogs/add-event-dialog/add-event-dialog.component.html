@@ -1,0 +1,89 @@
+<div mat-dialog-title class="event-dialog-title">
+  <h1 class="m-0">Meal Schedule - {{ data.meal ? "Overview" : "Add New" }}</h1>
+</div>
+<form
+  [formGroup]="mealForm"
+  (ngSubmit)="onSubmit()"
+  class="add-event-meal-form"
+>
+  <div mat-dialog-content>
+    <div class="row d-flex">
+      <mat-form-field class="pb-2" appearance="outline">
+        <mat-label>Meal</mat-label>
+        <input matInput required type="text" formControlName="meal" />
+        <mat-error
+          *ngIf="          
+          mealForm.controls['meal'].errors?.['required']
+          "
+        >
+          This field is required
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="pb-2" appearance="outline">
+        <mat-label>Date</mat-label>
+        <input matInput required type="date" formControlName="date" />
+        <mat-error
+          *ngIf="          
+          mealForm.controls['date'].errors?.['required']
+          "
+        >
+          This field is required
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="pb-2" appearance="outline">
+        <mat-label>Time</mat-label>
+        <input
+          matInput
+          [format]="24"
+          [ngxMatTimepicker]="pickerA"
+          readonly
+          formControlName="time"
+        />
+        <mat-icon *ngIf="!data.meal" matSuffix (click)="pickerA.open()">
+          watch_later
+        </mat-icon>
+        <mat-error
+          *ngIf="          
+          mealForm.controls['time'].errors?.['required']
+          "
+        >
+          This field is required
+        </mat-error>
+      </mat-form-field>
+      <ngx-mat-timepicker #pickerA></ngx-mat-timepicker>
+      <mat-form-field appearance="outline">
+        <mat-label>Meal details</mat-label>
+        <textarea matInput rows="4" formControlName="mealDetails"></textarea>
+        <mat-error
+          *ngIf="          
+          mealForm.controls['mealDetails'].errors?.['required']
+          "
+        >
+          This field is required
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div
+    mat-dialog-actions
+    class="justify-content-end g-component-dialog-actions-btn-container"
+  >
+    <button
+      mat-raised-button
+      class="dialog-button dialog-button-cancel"
+      type="button"
+      [mat-dialog-close]="false"
+    >
+      Close
+    </button>
+    <button
+      *ngIf="!data.meal"
+      mat-raised-button
+      class="dialog-button dialog-button-save"
+      type="submit"
+    >
+      Save
+    </button>
+  </div>
+</form>

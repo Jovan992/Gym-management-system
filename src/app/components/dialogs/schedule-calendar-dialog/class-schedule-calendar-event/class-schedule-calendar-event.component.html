@@ -1,0 +1,61 @@
+<div class="calendar-event-container position-relative">
+    <button mat-dialog-close class="position-absolute end-0 top-0 m-2">x</button>
+    <div class="px-3 pt-4 text-center">
+        <h1>{{data.event.title}}</h1>
+    </div>
+    <div class="p-2 px-3 py-0 mt-0 d-flex justify-content-between">
+        <div class="calendar-event-selection-container">
+            <h3>Available Members</h3>
+
+            <div cdkDropList #openMembersList="cdkDropList" [cdkDropListData]="openMembers"
+                [cdkDropListConnectedTo]="[selectedMembersList]" class="calendar-event-list"
+                (cdkDropListDropped)="dropMember($event)">
+                <div class="calendar-event-box" *ngFor="let item of openMembers" cdkDrag>{{item.name + " " +
+                    item.surname}}
+                </div>
+            </div>
+        </div>
+
+        <div class="calendar-event-selection-container">
+            <h3>Selected Members</h3>
+
+            <div cdkDropList #selectedMembersList="cdkDropList" [cdkDropListData]="selectedMembers"
+                [cdkDropListConnectedTo]="[openMembersList]" class="calendar-event-list"
+                (cdkDropListDropped)="dropMember($event)">
+                <div class="calendar-event-box" *ngFor="let item of selectedMembers" cdkDrag>{{item.name + " " +
+                    item.surname}}</div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="p-2 px-3 py-0 mt-0 d-flex justify-content-between">
+        <div class="calendar-event-selection-container">
+            <h3>Available Groups</h3>
+
+            <div cdkDropList #openGroupsList="cdkDropList" [cdkDropListData]="openGroups"
+                [cdkDropListConnectedTo]="[selectedGroupsList]" class="calendar-event-list"
+                (cdkDropListDropped)="dropGroup($event)">
+                <div class="calendar-event-box" *ngFor="let group of openGroups" cdkDrag>{{group.groupName}}
+                </div>
+            </div>
+        </div>
+
+        <div class="calendar-event-selection-container">
+            <h3>Selected Groups</h3>
+
+            <div cdkDropList #selectedGroupsList="cdkDropList" [cdkDropListData]="selectedGroups"
+                [cdkDropListConnectedTo]="[openGroupsList]" class="calendar-event-list"
+                (cdkDropListDropped)="dropGroup($event)">
+                <div class="calendar-event-box" *ngFor="let group of selectedGroups" cdkDrag>{{group.groupName}}</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="d-flex justify-content-end m-2 mx-3 ">
+        <button mat-raised-button type="button" class="dialog-button dialog-button-cancel me-2"
+            [mat-dialog-close]="false">Cancel</button>
+        <button mat-raised-button mat-dialog-close class="dialog-button dialog-button-save" type="submit"
+            (click)="saveEvent()">Save</button>
+    </div>
+</div>

@@ -1,0 +1,9 @@
+mat-form-field,
+.settings-btn-container {
+  width: 90%;
+}
+
+.settings-save-btn {
+  background-color: var(--persian-green);
+  color: var(--white);
+}

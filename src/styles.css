@@ -1,0 +1,351 @@
+@import "global-styles.css";
+
+html,
+body {
+  height: 100%;
+}
+
+html {
+  ::-webkit-scrollbar {
+    width: 16px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background-color: var(--scrollbar-track-color);
+    border-radius: 100px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    border-radius: 100px;
+    background: var(--scrollbar-thumb-color);
+  }
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.customize-mat-menu + * .mat-mdc-menu-panel {
+  background-color: var(--persian-green);
+  padding-bottom: 0;
+  color: var(--white);
+  border-radius: 0;
+}
+
+#component-section {
+  background-color: var(--white);
+  border-top: 3px solid var(--persian-green);
+}
+
+.remove-mat-expansion-panel-padding
+  .mat-expansion-panel-content
+  .mat-expansion-panel-body {
+  padding-bottom: 0 !important;
+  padding-top: 0 !important;
+  background-color: var(--gable-green);
+}
+
+.mat-exp-panel.mat-expansion-panel-spacing {
+  margin-bottom: 0 !important;
+  margin-top: 0 !important;
+}
+
+.mat-nav-list a.active {
+  background: blue;
+}
+
+.is-active {
+  background-color: var(--dark-teal) !important;
+
+  .list-item-text {
+    color: white !important;
+  }
+}
+
+.mat-expansion-panel-header-description,
+.mat-expansion-indicator::after {
+  color: #fff;
+}
+
+.mat-mdc-dialog-actions.g-component-dialog-actions-btn-container {
+  justify-content: end;
+  padding: 20px 38px;
+}
+
+.add-btn {
+  background-color: var(--iron);
+  border: 0.1rem solid var(--aluminium);
+}
+
+.avatarImg {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+mat-mdc-cell,
+th,
+td {
+  padding: 0 1rem !important;
+}
+
+.mat-drawer-content {
+  width: 0 !important;
+}
+
+.g-table-wrapper {
+  min-height: 200px;
+  max-height: calc(100vh - 521px);
+  overflow: auto;
+}
+
+.g-dashboard-wrapper {
+  min-height: 200px;
+  max-height: calc(100vh - 208px);
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+#component-title {
+  margin-bottom: 0;
+  margin-right: 0.5rem;
+}
+
+#component-subtitle {
+  font-weight: 400;
+  border-bottom: 1px solid var(--aluminium);
+}
+
+.component-header {
+  border-bottom: 1px solid var(--aluminium);
+}
+
+.component-heading-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.component-icon.fa.fa-bars {
+  margin-right: 0.5rem;
+}
+
+.component-title-container {
+  display: flex;
+  align-items: baseline;
+}
+
+.component-action-btn {
+  border: none;
+  color: var(--white);
+  padding: 4px 8px;
+}
+
+.edit-icon,
+.delete-icon {
+  width: 1rem;
+  color: var(--white);
+}
+
+.component-table-row {
+  height: 70px !important;
+}
+
+#component-action-btn-edit {
+  background-color: var(--blue-ivy);
+}
+
+#component-action-btn-delete {
+  background-color: var(--sunrise-orange);
+}
+
+button:disabled#component-action-btn-delete {
+  background-color: var(--sunrise-orange-disabled);
+}
+
+button:disabled#component-action-btn-edit {
+  background-color: var(--blue-ivy-disabled);
+}
+
+.dialog-button {
+  color: var(--white) !important;
+}
+
+.dialog-button.dialog-button-cancel {
+  background-color: var(--sunrise-orange) !important;
+}
+
+.dialog-button.dialog-button-save {
+  background-color: var(--blue-ivy) !important;
+}
+
+.g-dialog-responsive {
+  width: 50%;
+}
+
+.mat-calendar-content {
+  height: 80%;
+  display: flex;
+}
+
+mat-multi-year-view,
+mat-year-view {
+  width: 100%;
+}
+
+.mat-datepicker-content .mat-calendar {
+  width: 330px !important;
+}
+
+.mat-calendar-table {
+  height: 100%;
+}
+
+.component-custom-mat-header-cell.mat-mdc-header-cell {
+  border-bottom: 2px solid var(--outer-space);
+  color: var(--outer-space);
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.g-dialog-narrow-field .mat-mdc-form-field-infix {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+.g-component-container {
+  background-image: url(assets/wallpaper-dumbbells.jpg);
+  background-position: center;
+  background-size: cover;
+  height: 100%;
+  padding: 1rem;
+}
+
+.g-form-container {
+  max-width: 400px;
+  width: 80%;
+  max-height: 95%;
+  border-radius: 1rem;
+  background-color: var(--white);
+  padding: 1.5rem;
+  overflow-y: auto;
+}
+
+.g-submit-button {
+  background-color: var(--sunrise-orange) !important;
+  color: var(--white) !important;
+  width: 100%;
+  padding: 1.5rem 0;
+}
+
+.g-form-gym-icon {
+  height: 3.5rem;
+  border: 3px solid var(--sunrise-orange);
+  border-radius: 0.5rem;
+  margin: 0.5rem 0;
+}
+
+.g-form-hyperlink {
+  font-weight: bold;
+  color: var(--red-primary);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+input[matinput]::-webkit-outer-spin-button,
+input[matinput]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+
+  .settings-mat-form-field .mat-mdc-text-field-wrapper {
+    background-color: var(--persian-green-transparent);
+  }
+}
+
+.g-date-span {
+  font-weight: normal !important;
+  display: block !important;
+  font-size: smaller !important;
+}
+
+.g-gray-row {
+  background-color: var(--iron) !important;
+}
+
+#nutrition-calendar.custom-calendar.nutrition-calendar table.fc-col-header,
+#schedule-calendar table.fc-col-header,
+#nutrition-calendar.custom-calendar.nutrition-calendar
+  .fc-daygrid-body.fc-daygrid-body-balanced,
+#schedule-calendar .fc-daygrid-body.fc-daygrid-body-balanced,
+#nutrition-calendar.custom-calendar.nutrition-calendar
+  table.fc-scrollgrid-sync-table,
+#schedule-calendar table.fc-scrollgrid-sync-table {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.g-dialog-add-photo-div {
+  display: none;
+}
+
+.g-dialog-upload-div {
+  padding-right: 24px;
+  padding-top: 48px;
+}
+
+.add-event-meal-form .mdc-text-field--disabled .mdc-text-field__input,
+.nutrition-schedule-form .mdc-text-field--disabled .mdc-text-field__input {
+  color: black !important;
+}
+
+.dashboard-icon {
+  max-width: 150px;
+  max-height: 150px;
+  padding: 0.25rem;
+  filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(204deg)
+    brightness(104%) contrast(103%);
+}
+
+.dashboard-icon-div {
+  background-color: var(--persian-green);
+  padding: 0.25rem;
+  border: 0.25rem solid var(--white);
+  text-align: center;
+}
+
+.dashboard-number-span {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.dashboard-doughnut-div {
+  width: 90%;
+  margin: auto;
+}
+
+.g-dialog-responsive {
+  width: 50%;
+}
+
+.fc-event {
+  cursor: pointer !important;
+}
+
+@media only screen and (max-height: 800px) {
+  .g-table-wrapper {
+    max-height: calc(100vh - 386px);
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  .g-dialog-responsive {
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  .g-dialog-responsive {
+    width: 100%;
+  }
+}

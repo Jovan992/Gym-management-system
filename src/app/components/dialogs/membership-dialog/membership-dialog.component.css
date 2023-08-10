@@ -1,0 +1,32 @@
+
+.membership-dialog-price-right-align {
+  text-align: right;
+}
+
+.membership-dialog-upload-img {
+  padding: 15px 24px;
+}
+
+.membership-dialog-img-preview {
+  width: 2.8rem;
+  height: 2.8rem;
+}
+
+.mat-mdc-dialog-actions.membership-dialog-actions-btn-container {
+  justify-content: end;
+  padding: 20px 24px;
+}
+
+.mat-mdc-form-field-error.membership-price-error {
+  font-size: 12px;
+}
+
+.membership-dialog-choose-photo-btn {
+  background-color: var(--blue-ivy);
+  color: var(--white);
+  padding: 0.5rem;
+  border-radius: 0.3rem;
+  cursor: pointer;
+  margin-top: 1rem;
+  border: none;
+}

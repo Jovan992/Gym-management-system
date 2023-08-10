@@ -1,0 +1,90 @@
+<h1 mat-dialog-title>{{ data? 'Edit Class': 'Add Class'}}</h1>
+<form [formGroup]="classDialogForm" (ngSubmit)="onFormSubmit()">
+    <div mat-dialog-content>
+        <div class="row d-flex gap-2">
+            <mat-form-field appearance="outline">
+                <mat-label>Class name</mat-label>
+                <input matInput formControlName="name">
+                <mat-error
+                    *ngIf="classDialogForm.controls['name'].errors?.['required'] && classDialogForm.controls['name'].touched">Class
+                    Name
+                    field is
+                    required</mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Trainer name</mat-label>
+                <select matNativeControl formControlName="trainer">
+                    <option value="" selected></option>
+                    <option *ngFor="let trainer of trainersList" [value]="trainer.name + ' ' + trainer.surname">
+                        {{trainer.name + " " + trainer.surname}}
+                    </option>
+                </select>
+                <mat-error
+                    *ngIf="classDialogForm.controls['trainer'].errors?.['required'] && classDialogForm.controls['trainer'].touched">Trainer
+                    field is
+                    required</mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Location</mat-label>
+                <input matInput formControlName="location">
+                <mat-error
+                    *ngIf="classDialogForm.controls['location'].errors?.['required'] && classDialogForm.controls['location'].touched">Location
+                    field is
+                    required</mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Start time</mat-label>
+                <input matInput [format]="24" [ngxMatTimepicker]="pickerA" readonly formControlName="start" />
+                <mat-icon matSuffix (click)="pickerA.open()">
+                    watch_later
+                </mat-icon>
+                <mat-error
+                    *ngIf="classDialogForm.controls['start'].errors?.['required'] && classDialogForm.controls['start'].touched">Start
+                    time
+                    field is
+                    required</mat-error>
+                <ngx-mat-timepicker #pickerA></ngx-mat-timepicker>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>End time</mat-label>
+                <input matInput [format]="24" [ngxMatTimepicker]="pickerB" readonly formControlName="end" />
+                <mat-icon matSuffix (click)="pickerB.open()">
+                    watch_later
+                </mat-icon>
+                <mat-error
+                    *ngIf="classDialogForm.controls['end'].errors?.['required'] && classDialogForm.controls['end'].touched">End
+                    time
+                    field is
+                    required</mat-error>
+                <mat-error *ngIf="classDialogForm.controls['end'].errors?.['incorrect']">End
+                    time needs to be after start time!</mat-error>
+                <ngx-mat-timepicker #pickerB></ngx-mat-timepicker>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Date</mat-label>
+                <input formControlName="date" matInput placeholder="{{ _settingsService.dateFormat }}" [min]="minDate"
+                    [max]="maxDate" [matDatepicker]="picker" />
+                <mat-hint>{{ _settingsService.dateFormat }}</mat-hint>
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+                <mat-error *ngIf="classDialogForm.controls['date'].errors?.['matDatepickerMin']">You must chose
+                    date after today!</mat-error>
+                <mat-error *ngIf="classDialogForm.controls['date'].errors?.['matDatepickerMax']">Entered date is
+                    too big!</mat-error>
+                <mat-error
+                    *ngIf="classDialogForm.controls['date'].hasError('matDatepickerParse') && !classDialogForm.controls['date'].value">Invalid
+                    date</mat-error>
+                <mat-error
+                    *ngIf="classDialogForm.controls['date'].errors?.['required'] && !classDialogForm.controls['date'].hasError('matDatepickerParse') ">
+                    Date field is required
+                </mat-error>
+            </mat-form-field>
+        </div>
+    </div>
+    <mat-dialog-actions>
+        <button mat-raised-button type="button" class="dialog-button dialog-button-cancel"
+            [mat-dialog-close]="false">Cancel</button>
+        <button mat-raised-button class="dialog-button dialog-button-save" type="submit">{{data? 'Update':
+            'Save'}}</button>
+    </mat-dialog-actions>
+</form>
